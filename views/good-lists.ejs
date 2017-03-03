@@ -1,0 +1,95 @@
+<div class="goodInfo" align="center">
+    <div class="bodySize" align="left">
+        <label>
+            <img src="/img/info_weizhi.png">
+            当前位置：货源信息
+        </label>
+        <div class="content_goodslist" id="content">
+            <table>
+                <tr>
+                    <td class="name">规格:</td>
+                    <td class="view">
+                        <a class="btn_checkd">不限</a>
+                        <% posts.guige.forEach(function(post, index) { %>
+                            <a><%= post.name %></a>
+                            <span>&nbsp;</span>
+                        <% }) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name">发热量<span>（Kcal/kg）</span>:</td>
+                    <td class="view">
+                        <a class="btn_checkd">不限</a>
+                        <% posts.frl.forEach(function(post, index) { %>
+                        <a><%= post.name %></a>
+                        <span>&nbsp;</span>
+                        <% }) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name">加工工艺:</td>
+                    <td class="view">
+                        <a class="btn_checkd">不限</a>
+                        <% posts.jggy.forEach(function(post, index) { %>
+                        <a><%= post.name %></a>
+                        <span>&nbsp;</span>
+                        <% }) %>
+                    </td>
+                </tr>
+                <tr style="border-bottom:0;">
+                    <td class="name">硫份:</td>
+                    <td class="view">
+                        <a class=" btn_checkd">不限</a>
+                        <% posts.lf.forEach(function(post, index) { %>
+                        <a><%= post.name %></a>
+                        <span>&nbsp;</span>
+                        <% }) %>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="goodlist_info">
+            <div class="screen">
+                <a class="screen_check1" href="">日期</a>
+                <div class="line-list"></div>
+                <a class="screen_check" href="">价格</a>
+                <label style="font-weight: normal;">共有<span style="color: #fb8300">10</span>条信息</label>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>发布人</th>
+                    <th class="hidden-th">日期</th>
+                    <th class="hidden-th">提货地</th>
+                    <th>规格</th>
+                    <th class="hidden-th">发热量(KcaI/kg)</th>
+                    <th class="hidden-th">加工工艺</th>
+                    <th>价格(元/吨)</th>
+                    <th>详情</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% posts.goods.forEach(function(good, index) { %>
+                <tr>
+                    <td><%= good.unit%></td>
+                    <td class="hidden-th"><%= new Date(good.ctime).toLocaleString() %></td>
+                    <td class="hidden-th"><%= good.address %></td>
+                    <td style="color: #ff6600"><%= good.guige %></td>
+                    <td class="hidden-th"><%= good.farel %></td>
+                    <td class="hidden-th"><%= good.jggy %></td>
+                    <td style="color: #ff6600;" ><%= good.price %></td>
+                    <td align="center">
+                        <a href="">
+                            详情
+                        </a>
+                    </td>
+                </tr>
+                <% }) %>
+                </tbody>
+            </table>
+            <div class="pagingd" id="pages">
+                分页
+            </div>
+        </div>
+    </div>
+</div>

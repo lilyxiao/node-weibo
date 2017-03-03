@@ -1,0 +1,134 @@
+<div class="content" align="center">
+    <div class="cont_size">
+        <%- partial('left',{leftvalue:'goods~1'}) %>
+        <div class="right_div">
+            <div class="title" align="left">
+                <img src="/img/info_weizhi.png">
+                当前位置：个人中心>发布货源
+            </div>
+            <div class="blank"></div>
+            <div class="pubgood" align="center">
+                <form id="Form" method="POST">
+                    <div class="good-1">
+                        <label>货源模板</label>
+                        <select class="form-control" id="mytemplate">
+                            <option value="" disabled selected>请选择</option>
+                           <% goods.temp.forEach(function (temp,index) { %>
+                            <option value="<%= temp.name %>" style="color: #555555"><%= temp.name %></option>
+                         <%  }) %>
+
+                        </select>
+                    </div>
+                    <div class="good-1">
+                        <a class="btn btn-success-1" href="">添加模板</a>
+                    </div>
+                    <div class="good-2"></div>
+                    <div class="good-3">
+                        <div class="publish-1"></div>
+                        <div class="temp3-3">
+                            <div class="temp-info-1">
+                                <label><span>*</span>规格</label>
+                                <select class="form-control" id="norm" name="norm">
+                                    <option value="">请选择</option>
+                                    <% goods.guige.forEach(function (guige,index) { %>
+                                    <option value="<%= guige.name %>"><%= guige.name %></option>
+                                  <%  }) %>
+                                </select>
+                            </div>
+                            <div class="temp-info-2">
+                                <label><span>*</span>发热量(Kcal/kg)</label>
+                                <select class="form-control select" id="qnet" name="qnet">
+                                    <option value="">请选择</option>
+                                    <% goods.fareliang.forEach(function (fareliang,index) { %>
+                                    <option value="<%= fareliang.name %>"><%= fareliang.name %></option>
+                                    <%  }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="temp3-3">
+                            <div class="temp-info-1">
+                                <label><span>*</span>加工工艺</label>
+                                <select class="form-control select" id="tech" name="tech">
+                                    <option value="">请选择</option>
+                                    <% goods.jiagonggy.forEach(function (jiagonggy,index) { %>
+                                    <option value="<%= jiagonggy.name %>"><%= jiagonggy.name %></option>
+                                    <%  }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="temp3-3">
+                            <div class="temp-info-1">
+                                <label>硫份</label>
+                                <select class="form-control select" id="sulfur" name="sulfur">
+                                    <option value="">请选择</option>
+                                    <% goods.liufen.forEach(function (liufen,index) { %>
+                                    <option value="<%= liufen.name %>"><%= liufen.name %></option>
+                                    <%  }) %>
+                                </select>
+                            </div>
+                            <div class="temp-info-2">
+                                <label>挥发</label>
+                                <select class="form-control select" id="staged_air" name="staged_air">
+                                    <option value="">请选择</option>
+                                    <% goods.huifa.forEach(function (huifa,index) { %>
+                                    <option value="<%= huifa.name %>"><%= huifa.name %></option>
+                                    <%  }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="temp3-3">
+                            <div class="temp-info-1">
+                                <label>灰分</label>
+                                <select class="form-control select" id="ashes" name="ashes">
+                                    <option value="">请选择</option>
+                                    <% goods.huifen.forEach(function (huifen,index) { %>
+                                    <option value="<%= huifen.name %>"><%= huifen.name %></option>
+                                    <%  }) %>
+                                </select>
+                            </div>
+                            <div class="temp-info-2">
+                                <label>全水分</label>
+                                <select class="form-control select" id="total_moisture" name="total_moisture">
+                                    <option value="">请选择</option>
+                                    <% goods.quanshuifen.forEach(function (quanshuifen,index) { %>
+                                    <option value="<%= quanshuifen.name %>"><%= quanshuifen.name %></option>
+                                    <%  }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="temp3-3">
+                            <div class="temp-info-1">
+                                <label><span>*</span>产地</label>
+                                <input class="form-control city city-style" id="pub_city" name="pub_city" placeholder="请选择"  type="text" value="">
+                            </div>
+                            <div class="temp-info-2">
+                                <label>详细地址</label>
+                                <input class="form-control" id="pub_origin" name="pub_origin" type="text" value="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="good-4">
+                        <div class="good-h"></div>
+                        <div class="temp3-3">
+                            <div class="temp-info-1">
+                                <label><span>*</span>价格</label>
+                                <input class="form-control" id="price" name="price" placeholder="请输入价格" type="text" value="">
+                            </div>
+                            <div class="temp-info-2">
+                                <label><span>*</span>联系电话</label>
+                                <input class="form-control" id="mobileno" name="mobileno" placeholder="请填写联系电话" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="temp3-3">
+                            <label>备注</label>
+                            <textarea class="form-control" id="remark" name="remark" placeholder="请填写备注"></textarea>
+                        </div>
+                        <button type="button" class="btn" id="submit" name="submit">确定</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

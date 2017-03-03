@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title><%= locals.title %> - Microblog</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+    </style>
+    <link href="/stylesheets/bootstrap-responsive.css" rel="stylesheet">
+
+    <link href="/stylesheets/mystyle.css" rel="stylesheet">
+    <link href="/stylesheets/lists.css" rel="stylesheet">
+    <link href="/stylesheets/left.css" rel="stylesheet">
+    <link href="/stylesheets/city.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">Microblog</a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="active"><a href="/">首页</a></li>
+                    <li><a href="/mydiary">个人日记</a></li>
+                    <li><a href="/good-lists">货源信息</a></li>
+                    <li><a href="/pubGoods">发布货源</a></li>
+                    <% if (!user) { %>
+                    <li><a href="/login">登入</a></li>
+                    <li><a href="/reg">注册</a></li>
+                    <% } else { %>
+                    <li><a href="/logout">登出</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="container" class="container">
+    <div style="height: 50px;width: 100%;"></div>
+
+    <% if (success) { %>
+    <div class="alert alert-success">
+        <%= success %>
+    </div>
+    <% } %>
+    <% if (error) { %>
+    <div class="alert alert-error">
+        <%= error %>
+    </div>
+    <% } %>
+
+    <%- body %>
+    <hr />
+    <footer>
+
+    </footer>
+</div>
+</body>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/bootstrap.js"></script>
+<script src="/javascripts/Popt.js"></script>
+<script src="/javascripts/cityJson.js"></script>
+<script src="/javascripts/citySet.js"></script>
+<script src="/javascripts/jquery.ajaxfileupload.js"></script>
+
+<script>
+
+    upload("#file")
+
+    //上传图片
+    function upload(e, parmars){
+        $(e).ajaxfileupload({
+            action: "/upload",
+            onStart: function(){
+               console.log('正在上传。。。');
+            },
+            onComplete: function(response) {
+                console.dir(response);
+
+                if(response.url){
+                    $("#upload-img").attr('src',response.url);
+                }
+
+
+            }
+        });
+    }
+
+    //城市选择
+    $(".city").click(function (e) {
+        SelCity(this,e);
+    });
+
+    //发布货源
+    $("#submit").click(function () {
+        var data = {
+            "guige": $('#norm').val(),
+            "farel": $('#qnet').val(),
+            "jggy": $('#tech').val(),
+            "liufen": $('#sulfur').val(),
+            "huifa": $('#staged_air').val(),
+            "huifen": $('#ashes').val(),
+            "quanshuif": $('#total_moisture').val(),
+            "mobileno": $('#mobileno').val(),
+            "address": $('#pub_city').val(),
+            "pub_origin": $('#pub_origin').val(),
+            "price": $('#price').val(),
+            "remark": $('#remark').val()
+        };
+
+        $.ajax({
+            type:'POST',
+            url:'/pubGood',
+            headers: {'Content-Type': 'application/json', 'apptype':1},
+            data: JSON.stringify(data),
+            daaType: 'JSON',
+            success:function (res) {
+                console.log("success");
+
+                window.location.href = '/good-lists';
+            },
+            error:function (err) {
+                console.dir(err);
+            }
+        })
+    })
+
+    //提交日记
+    function submitDiary() {
+
+        var data = {diary:$("#diary-text").val(),imgurl:$("#upload-img").attr('src')};
+
+        console.dir(data);
+
+        $.ajax({
+            type:'post',
+            url:'/submydiary',
+            headers: {'Content-Type': 'application/json', 'apptype':1},
+            data: JSON.stringify(data),
+            daaType: 'JSON',
+            success:function (res) {
+                console.log("success");
+
+                window.location.href = '/mydiary';
+            },
+            error:function (err) {
+                console.dir(err);
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,37 @@
+<div class="main-content clearfix">
+    <div class="crumbs-nav-wrap">
+        <div class="crumbs-nav clearfix">
+            <a class="fl" href="#">首页</a>
+            <span class="fl">&gt;</span>
+            <a class="fl" href="#">个人日记</a>
+            <a class="fr" href="/writeDiary">写日记</a>
+        </div>
+    </div>
+
+    <div class="main-content-box">
+        <ul id="a_say" class="list">
+
+            <% diarys.forEach(function(diary,index){ %>
+
+            <li class="list-li animated bounceIn clearfix">
+                <div class="say-pic-box fl">
+                    <img src="<%= diary.imgurl %>" width="100" height="100" alt="专注">
+                </div>
+                <div class="say-text fr">
+                    <p class="info">
+                        <%= diary.diary %>
+                        <span class="date-time">
+		                 		<%= new Date(diary.ctime).toLocaleString() %>
+		                 	</span>
+                    </p>
+                </div>
+            </li>
+
+           <% }) %>
+        </ul>
+        <p id="loadedContent" class="loaded-warp-box">
+
+        </p>
+    </div>
+
+</div>
